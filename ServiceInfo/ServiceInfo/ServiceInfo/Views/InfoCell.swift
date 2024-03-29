@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class InfoCell: UITableViewCell {
     
@@ -23,9 +24,10 @@ final class InfoCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         nameLabel.font = UIFont.systemFont(ofSize: 15)
         nameLabel.textColor = UIColor(named: "TextColor")
-        nameLabel.numberOfLines = 2
+        nameLabel.numberOfLines = 3
         return nameLabel
     }()
     
@@ -48,19 +50,18 @@ final class InfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureInfoCell(title: String?, description: String?, image: UIImage?) {
+    func configureInfoCell(title: String?, description: String?, image_url: URL) {
         titleLabel.text = title
         descriptionLabel.text = description
-        iconImage.image = image
+        iconImage.kf.setImage(with: image_url)
     }
     
-    // MARK: - Layouts
+// MARK: - Layouts
     private func setupCell() {
         self.contentView.addSubview(iconImage)
         NSLayoutConstraint.activate([
-            iconImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            iconImage.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             iconImage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10),
-            iconImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
             iconImage.heightAnchor.constraint(equalToConstant: 60),
             iconImage.widthAnchor.constraint(equalToConstant: 60)
         ])
@@ -75,7 +76,7 @@ final class InfoCell: UITableViewCell {
         self.contentView.addSubview(descriptionLabel)
         NSLayoutConstraint.activate([
             descriptionLabel.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10),
             descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
         ])
