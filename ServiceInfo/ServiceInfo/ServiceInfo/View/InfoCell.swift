@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class InfoCell: UITableViewCell {
     
@@ -23,6 +24,7 @@ final class InfoCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         nameLabel.font = UIFont.systemFont(ofSize: 15)
         nameLabel.textColor = UIColor(named: "TextColor")
         nameLabel.numberOfLines = 3
@@ -51,7 +53,8 @@ final class InfoCell: UITableViewCell {
     func configureInfoCell(title: String?, description: String?, image_url: URL) {
         titleLabel.text = title
         descriptionLabel.text = description
-        iconImage.imageFrom(url: image_url)
+//        iconImage.imageFrom(url: image_url)
+        iconImage.kf.setImage(with: image_url)
     }
     
     // MARK: - Layouts
@@ -74,7 +77,7 @@ final class InfoCell: UITableViewCell {
         self.contentView.addSubview(descriptionLabel)
         NSLayoutConstraint.activate([
             descriptionLabel.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10),
             descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
         ])

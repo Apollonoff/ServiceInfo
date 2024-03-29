@@ -74,6 +74,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let appURL = URL(string: self.apps[indexPath.row].link)
+        print(appURL)
+    }
 }
 
 // MARK: - Layouts

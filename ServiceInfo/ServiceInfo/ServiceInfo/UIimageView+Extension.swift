@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Kingfisher быстрее :/
 extension UIImageView{
   func imageFrom(url:URL){
       DispatchQueue.global(qos: .userInitiated).async { [weak self] in
