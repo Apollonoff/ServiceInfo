@@ -25,7 +25,7 @@ final class InfoCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.systemFont(ofSize: 15)
         nameLabel.textColor = UIColor(named: "TextColor")
-        nameLabel.numberOfLines = 2
+        nameLabel.numberOfLines = 3
         return nameLabel
     }()
     
@@ -58,9 +58,8 @@ final class InfoCell: UITableViewCell {
     private func setupCell() {
         self.contentView.addSubview(iconImage)
         NSLayoutConstraint.activate([
-            iconImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            iconImage.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             iconImage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10),
-            iconImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
             iconImage.heightAnchor.constraint(equalToConstant: 60),
             iconImage.widthAnchor.constraint(equalToConstant: 60)
         ])

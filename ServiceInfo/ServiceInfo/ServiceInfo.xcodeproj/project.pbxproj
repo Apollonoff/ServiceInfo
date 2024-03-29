@@ -14,6 +14,7 @@
 		6682A2192BB69464003CEA61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6682A2172BB69464003CEA61 /* LaunchScreen.storyboard */; };
 		6682A2212BB69708003CEA61 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6682A2202BB69708003CEA61 /* InfoCell.swift */; };
 		6682A2232BB6A3DD003CEA61 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6682A2222BB6A3DD003CEA61 /* MainModel.swift */; };
+		6682A2282BB6AF8B003CEA61 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6682A2272BB6AF8B003CEA61 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		6682A21A2BB69464003CEA61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6682A2202BB69708003CEA61 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		6682A2222BB6A3DD003CEA61 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		6682A2272BB6AF8B003CEA61 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				6682A2222BB6A3DD003CEA61 /* MainModel.swift */,
+				6682A2272BB6AF8B003CEA61 /* NetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6682A2282BB6AF8B003CEA61 /* NetworkManager.swift in Sources */,
 				6682A2112BB69462003CEA61 /* MainViewController.swift in Sources */,
 				6682A2212BB69708003CEA61 /* InfoCell.swift in Sources */,
 				6682A20D2BB69462003CEA61 /* AppDelegate.swift in Sources */,

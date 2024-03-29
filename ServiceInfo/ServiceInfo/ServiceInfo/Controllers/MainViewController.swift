@@ -8,7 +8,14 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
+    private var networkManager = NetworkManager()
+    private var apps: [Result] = [] {
+        didSet {
+            infoTableView.reloadData()
+        }
+    }
+    
     private let infoTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,13 +37,19 @@ class MainViewController: UIViewController {
         navigationItem.title = "Сервисы"
         navigationItem.titleView?.tintColor = UIColor(named: "TextColor")
         navigationItem.titleView?.backgroundColor = UIColor(named: "BackgroundColor")
+        
+        networkManager.getAllApps({(apps) in
+            DispatchQueue.main.async {
+                self.apps = apps.body.services
+            }
+        })
     }
 }
 
 //MARK: - TableView Data Source and Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        8
+        return apps.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,12 +61,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         
-        cell.configureInfoCell(title: "VK", description: "knfjnfjsnjdnsjdnsjdnjsjenfjejfbejfbjefjebfjebjfebfjbejfbjebfj", image: UIImage(named: "VK"))
+        let appData = self.apps[indexPath.row]
+
+        cell.configureInfoCell(
+            title: appData.name,
+            description: appData.description,
+            image: UIImage(named: "VK"))
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return UITableView.automaticDimension
     }
 }
 
