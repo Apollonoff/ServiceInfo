@@ -53,11 +53,10 @@ final class InfoCell: UITableViewCell {
     func configureInfoCell(title: String?, description: String?, image_url: URL) {
         titleLabel.text = title
         descriptionLabel.text = description
-//        iconImage.imageFrom(url: image_url)
         iconImage.kf.setImage(with: image_url)
     }
     
-    // MARK: - Layouts
+// MARK: - Layouts
     private func setupCell() {
         self.contentView.addSubview(iconImage)
         NSLayoutConstraint.activate([

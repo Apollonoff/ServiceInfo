@@ -10,6 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     private var networkManager = NetworkManager()
+    
     private var apps: [Result] = [] {
         didSet {
             infoTableView.reloadData()
@@ -37,7 +38,7 @@ class MainViewController: UIViewController {
         navigationItem.title = "Сервисы"
         navigationItem.titleView?.tintColor = UIColor(named: "TextColor")
         navigationItem.titleView?.backgroundColor = UIColor(named: "BackgroundColor")
-        
+        // get apps data
         networkManager.getAllApps({(apps) in
             DispatchQueue.main.async {
                 self.apps = apps.body.services
@@ -48,6 +49,8 @@ class MainViewController: UIViewController {
 
 //MARK: - TableView Data Source and Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    //MARK: Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return apps.count
     }
@@ -62,25 +65,26 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = .disclosureIndicator
         
         let appData = self.apps[indexPath.row]
-        guard let url = URL(string: appData.icon_url) else {return cell}
-        cell.configureInfoCell(
-            title: appData.name,
-            description: appData.description,
-            image_url: url)
+        if let url = URL(string: appData.icon_url) {
+            cell.configureInfoCell(
+                title: appData.name,
+                description: appData.description,
+                image_url: url)
+        }
         
         return cell
     }
     
+    //MARK: Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let appURL = URL(string: self.apps[indexPath.row].link)
-        print(appURL)
+        guard let appURL = URL(string: self.apps[indexPath.row].link) else { return }
+        UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
     }
 }
-
 // MARK: - Layouts
 private extension MainViewController {
     func setupTableView() {
