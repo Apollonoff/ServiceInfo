@@ -8,6 +8,7 @@
 import Foundation
 
 class NetworkManager {
+    
     private let baseURL = "https://publicstorage.hb.bizmrg.com/sirius/result.json"
     
     func getAllApps(_ complitionHandler: @escaping (Root) -> Void) {

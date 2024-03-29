@@ -12,22 +12,30 @@ final class InfoCell: UITableViewCell {
     
     static let identifier = "InfoCell"
     
+    private let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        return stack
+    }()
+    
     private let titleLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.font = UIFont.systemFont(ofSize: 17)
+        nameLabel.setContentHuggingPriority(.defaultHigh + 1, for: .vertical)
+        nameLabel.font = UIFont.systemFont(ofSize: 18)
         nameLabel.textColor = UIColor(named: "TextColor")
-        nameLabel.numberOfLines = 1
+        nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
     private let descriptionLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        nameLabel.font = UIFont.systemFont(ofSize: 15)
+        nameLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        nameLabel.font = UIFont.systemFont(ofSize: 14)
         nameLabel.textColor = UIColor(named: "TextColor")
-        nameLabel.numberOfLines = 3
+        nameLabel.numberOfLines = 0
         return nameLabel
     }()
     
@@ -55,7 +63,6 @@ final class InfoCell: UITableViewCell {
         descriptionLabel.text = description
         iconImage.kf.setImage(with: image_url)
     }
-    
 // MARK: - Layouts
     private func setupCell() {
         self.contentView.addSubview(iconImage)
@@ -66,19 +73,16 @@ final class InfoCell: UITableViewCell {
             iconImage.widthAnchor.constraint(equalToConstant: 60)
         ])
         
-        self.contentView.addSubview(titleLabel)
-        NSLayoutConstraint.activate([
-            titleLabel.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10),
-            titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            titleLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10)
-        ])
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(descriptionLabel)
         
-        self.contentView.addSubview(descriptionLabel)
+        self.contentView.addSubview(stackView)
         NSLayoutConstraint.activate([
-            descriptionLabel.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            descriptionLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
+            stackView.leftAnchor.constraint(equalTo: iconImage.rightAnchor, constant: 10),
+            stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            stackView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            stackView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
         ])
     }
 }

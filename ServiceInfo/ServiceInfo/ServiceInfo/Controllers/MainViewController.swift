@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
         infoTableView.dataSource = self
         infoTableView.delegate = self
         infoTableView.separatorStyle = .singleLine
-        // register cell
+        // register Cell
         infoTableView.register(InfoCell.self, forCellReuseIdentifier: InfoCell.identifier)
         // setup Navigation Bar
         navigationItem.title = "Сервисы"
@@ -46,11 +46,10 @@ class MainViewController: UIViewController {
         })
     }
 }
-
-//MARK: - TableView Data Source and Delegate
+// MARK: - TableView Data Source and Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: Data Source
+    // MARK: Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return apps.count
     }
@@ -71,11 +70,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 description: appData.description,
                 image_url: url)
         }
-        
         return cell
     }
     
-    //MARK: Delegate
+    // MARK: Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
