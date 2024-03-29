@@ -48,10 +48,10 @@ final class InfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureInfoCell(title: String?, description: String?, image: UIImage?) {
+    func configureInfoCell(title: String?, description: String?, image_url: URL) {
         titleLabel.text = title
         descriptionLabel.text = description
-        iconImage.image = image
+        iconImage.imageFrom(url: image_url)
     }
     
     // MARK: - Layouts

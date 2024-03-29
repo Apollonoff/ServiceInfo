@@ -62,11 +62,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = .disclosureIndicator
         
         let appData = self.apps[indexPath.row]
-
+        guard let url = URL(string: appData.icon_url) else {return cell}
         cell.configureInfoCell(
             title: appData.name,
             description: appData.description,
-            image: UIImage(named: "VK"))
+            image_url: url)
+        
         return cell
     }
     
